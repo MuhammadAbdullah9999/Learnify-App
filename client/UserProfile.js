@@ -19,18 +19,22 @@ export default function Profile() {
 
         navigation.navigate('Home')
     }
-    
+    const passwordHandle = () => {
+
+        navigation.navigate('NewPassword')
+    }
+
     return (
         <View style={{ flex: 1, backgroundColor: '#06161C', }}>
             <View style={{ flex: 0.10, alignItems: 'center', flexDirection: 'row', marginTop: 30, backgroundColor: '#06161C', }}>
-                <FontAwesome name="angle-left" size={30} style={{ color: 'white', marginLeft: 15 }}  />
+                <FontAwesome name="angle-left" size={30} style={{ color: 'white', marginLeft: 15 }} onPress={homeHandle} />
                 <View style={{ flex: 1, alignItems: 'center', marginRight: 25 }}>
                     <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'white' }}>Profile</Text>
                 </View>
             </View>
 
-            <View style={{ flex: 0.90, borderStartStartRadius: 50, borderStartEndRadius: 50, backgroundColor: 'white' }}>
-                <View style={{flex:0.3, justifyContent:'center',alignItems:'center'}}>
+            <View style={{ flex: 0.90, borderStartStartRadius: 50, borderStartEndRadius: 50, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flex: 0.3, justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ marginTop: 30 }}>
                         <Image
                             style={{ width: 100, height: 100, borderRadius: 50 }}
@@ -38,14 +42,44 @@ export default function Profile() {
                         </Image>
                     </View>
                     <View style={{ marginTop: 20, }}>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold',textAlign:'center' }}>Ahsan Naseem</Text>
-                        <Text style={{ fontSize: 15, color: '#6b6969', marginTop: 5 ,textAlign:'center'}}>abc@gmail.com</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Ahsan Naseem</Text>
+                        <Text style={{ fontSize: 15, color: '#6b6969', marginTop: 5, textAlign: 'center' }}>abc@gmail.com</Text>
                     </View>
                 </View>
 
+
+                <View style={{flex:0.45,justifyContent:'center',alignItems:'center'}}>
+
+              
+
+
+                <View style={{ flex: 0.15,backgroundColor:'#fcfcfc', borderRadius: 20, width: '80%', height: '10%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',paddingLeft: 9 }}>
+                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
+                            <FontAwesome name="user" size={20} style={{ color: 'black' }} />
+                            <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Account Information</Text>
+                        </View>
+                        <FontAwesome name="angle-right" size={20} style={{ color: 'black', marginRight: 10 }} />
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flex: 0.15,backgroundColor:'#fcfcfc' ,borderRadius: 20, width: '80%', height: '10%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',marginTop:20,paddingLeft:9 }}>
+                    <TouchableOpacity style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }} onPress={passwordHandle}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
+                            <FontAwesome name="lock" size={20} style={{ color: 'black' }} />
+                            <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Change Password</Text>
+                        </View>
+                        <FontAwesome name="angle-right" size={20} style={{ color: 'black', marginRight: 10 }} />
+                    </TouchableOpacity>
+                </View>
+                </View>
+
+              
+
+
+
                 <View style={{ flex: 0.20, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
                     <TouchableOpacity onPress={loginHandle}>
-                        <View style={{ backgroundColor: '#06161C', borderRadius: 5, width: 200, height: 35, alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{ backgroundColor: '#06161C', borderRadius:20, width: 300, height: 35, alignItems: 'center', justifyContent: 'center' }}>
                             <Text style={{ color: 'white', textAlign: 'center' }}>Log out</Text>
                         </View>
                     </TouchableOpacity>

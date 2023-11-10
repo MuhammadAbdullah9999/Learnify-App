@@ -18,7 +18,6 @@ import Icon from "react-native-ico-material-design";
 
 export default function Login() {
   const [fontsLoaded] = useFonts({
-    Inconsolata: require("./assets/fonts/Inconsolata/Inconsolata.ttf"),
     Montserrat: require("./assets/fonts/Montserrat/Montserrat.ttf"),
   });
 
@@ -58,7 +57,7 @@ export default function Login() {
       }
 
       const response = await axios.post(
-        "http://192.168.0.102:5000/signIn",
+        "http://192.168.100.10:5000/signIn",
         formData
       );
 

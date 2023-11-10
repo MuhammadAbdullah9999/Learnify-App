@@ -4,6 +4,7 @@ import Home from './Home';
 import Register from './Register';
 import Profile from './Profile';
 import UserProfile from './UserProfile';
+import NewPassword from './NewPassword';
 
 
 import { StatusBar } from 'expo-status-bar';
@@ -60,6 +61,13 @@ export default function App() {
     <Stack.Screen 
       name="Profile" 
       component={Profile}
+      options={{
+        headerShown:false
+      }}
+    />
+     <Stack.Screen 
+      name="NewPassword" 
+      component={NewPassword}
       options={{
         headerShown:false
       }}

@@ -79,7 +79,7 @@ export default function Register() {
       }
       console.log(formData);
       const response = await axios.post(
-        "http://192.168.0.102:5000/signUp",
+        "http://192.168.100.10:5000/signUp",
         formData
       );
 

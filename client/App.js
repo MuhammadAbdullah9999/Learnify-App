@@ -5,7 +5,7 @@ import Register from './Register';
 import Profile from './Profile';
 import UserProfile from './UserProfile';
 import NewPassword from './NewPassword';
-
+import Messages from './Messages';
 
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
@@ -47,6 +47,13 @@ export default function App() {
     <Stack.Screen 
       name="Home" 
       component={Home}
+      options={{
+        headerShown:false
+      }}
+    />
+     <Stack.Screen 
+      name="Messages" 
+      component={Messages}
       options={{
         headerShown:false
       }}

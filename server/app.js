@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 const SignUp = require("./Routes/Authentication/SignUp.js");
 const SignIn = require("./Routes/Authentication/SignIn.js");
+const resetPassword = require("./Routes/Authentication/ResetPassword.js");
 // const Dashboard = require("./Routes/dashboard");
 // const logout = require("./Routes/Logout");
 // const ForgotPassword = require("./Routes/ForgotPassword");
@@ -20,6 +21,7 @@ const SignIn = require("./Routes/Authentication/SignIn.js");
 
 app.use("/signUp", SignUp);
 app.use("/signIn", SignIn);
+app.use('/resetPassword',resetPassword);
 // app.use("/Logout", logout);
 // app.use("/dashboard", Dashboard);
 // app.use("/forgot-password", ForgotPassword);

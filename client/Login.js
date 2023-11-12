@@ -15,6 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import axios from "axios";
 import Icon from "react-native-ico-material-design";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login() {
   const [fontsLoaded] = useFonts({
@@ -57,7 +58,7 @@ export default function Login() {
       }
 
       const response = await axios.post(
-        "http://192.168.100.10:5000/signIn",
+        "http://192.168.0.102:5000/signIn",
         formData
       );
 
@@ -66,6 +67,7 @@ export default function Login() {
           email: "",
           password: "",
         });
+        await AsyncStorage.setItem("user", JSON.stringify(response.data));
         navigation.navigate("UserProfile");
       }
     } catch (error) {

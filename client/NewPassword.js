@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { cloneElement, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function NewPassword() {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -11,6 +13,7 @@ export default function NewPassword() {
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
     const [currentPassword, setCurrentpassword] = useState('');
     const [currentPasswordVisible, setCurrentpasswordVisible] = useState(false);
+    const [error, setError] = useState('');
 
     const toggleCurrentPasswordVisibility = () => {
         setCurrentpasswordVisible(!currentPasswordVisible);
@@ -29,10 +32,40 @@ export default function NewPassword() {
 
         navigation.navigate('Home')
     }
-    const profileHandle = () => {
+    const navigateToLogin = () => {
 
-        navigation.navigate('UserProfile')
+        navigation.navigate('Login')
     }
+    const resetPassword=async()=>{
+    if (password !== confirmPassword) {
+        setError("New password and confirm new password do not match.");
+        return;
+    }
+
+    if (password.length < 6) {
+        setError("Password should be at least 6 characters long.");
+        return;
+    }
+
+    try{
+        let user=await AsyncStorage.getItem('user');
+        user=JSON.parse(user);
+        const response=await axios.post('http://192.168.0.102:5000/resetPassword',{email:user.email,password:password,currentPassword:currentPassword});
+    if(response.status===200){
+        Alert.alert('Password Updated Successfully', '', [
+            {
+              text: 'OK',
+              onPress:navigateToLogin,
+            },
+          ]);        
+    }    
+    }
+    catch(error){
+        console.log(error);
+        setError(error.response.data.message);
+    }
+   
+}
 
 
     return (
@@ -107,6 +140,7 @@ export default function NewPassword() {
                             value={confirmPassword}
                             onChangeText={(text) => setConfirmPassword(text)}
                         />
+                        <Text style={{color:'red'}}>{error}</Text>
                         {/* <TouchableOpacity
                             onPress={toggleConfirmPasswordVisibility}
                             style={{
@@ -128,7 +162,7 @@ export default function NewPassword() {
                 </View>
 
                 <View style={{ flex: 0.2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    <TouchableOpacity onPress={profileHandle}>
+                    <TouchableOpacity onPress={resetPassword}>
                         <View style={{ backgroundColor: '#06161C', borderRadius: 20, width: 300, height: 35, alignItems: 'center', justifyContent: 'center' }}>
                             <Text style={{ color: 'white', textAlign: 'center' }}>Continue</Text>
                         </View>
